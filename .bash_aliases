@@ -15,7 +15,7 @@ simulateUpload() {
     testLoop=1;
   fi
 
-  echo "running tests $testLoop times"
+  echo "running tests $testLoop time(s)"
   for ((c=1; c<=$testLoop; c++ ))
   do
     parallel-ssh -h ./hosts.txt -l ubuntu -P -x "-i ./inno-personal.pem" bash upload.sh $1
@@ -23,7 +23,17 @@ simulateUpload() {
 }
 
 simulateDownload() {
-	parallel-ssh -h ./hosts.txt -l ubuntu -P -x "-i ./inno-personal.pem" bash download.sh $1
+  testLoop=$2;
+  if [ -z "$2" ]
+  then
+    testLoop=1;
+  fi
+
+  echo "running tests $testLoop time(s)"
+  for ((c=1; c<=$testLoop; c++ ))
+  do
+    parallel-ssh -h ./hosts.txt -l ubuntu -P -x "-i ./inno-personal.pem" bash download.sh $1
+  done
 }
 
 testForloop() {
