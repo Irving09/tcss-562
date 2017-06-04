@@ -8,9 +8,33 @@ goec2() {
 }
 
 simulateUpload() {
-	parallel-ssh -h ./hosts.txt -l ubuntu -P -x "-i ./inno-personal.pem" bash upload.sh $1
+  testLoop=$2;
+  if [ -z "$2" ]
+  then
+    testLoop=1;
+  fi
+
+  echo "running tests $testLoop times"
+  for ((c=1; c<=$testLoop; c++ ))
+  do
+    parallel-ssh -h ./hosts.txt -l ubuntu -P -x "-i ./inno-personal.pem" bash upload.sh $1
+  done
 }
 
 simulateDownload() {
 	parallel-ssh -h ./hosts.txt -l ubuntu -P -x "-i ./inno-personal.pem" bash download.sh $1
 }
+
+testForloop() {
+  testLoop=$1;
+  if [ -z "$1" ]
+  then
+    testLoop=1;
+  fi
+
+  for ((c=1; c<=$testLoop; c++ ))
+  do
+    echo "$c"
+  done
+}
+
