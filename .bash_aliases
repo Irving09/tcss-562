@@ -49,3 +49,15 @@ testForloop() {
   done
 }
 
+copyToAllVms() {
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.4.17:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.4.206:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.4.207:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.1.132:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.12.241:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.5.78:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.3.242:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.6.4:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.9.182:~
+	scp -i ./inno-personal.pem $1 ubuntu@172.31.2.222:~
+}
